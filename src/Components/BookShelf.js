@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../App.css";
 import Book from "./Book";
 
+
 class BookShelf extends Component {
   render() {
     return (
@@ -9,7 +10,7 @@ class BookShelf extends Component {
         <h2 className="bookshelf-title">{this.props.shelfTitle}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">{this.props.books.map(book => (
-            <Book currentBook={book} key={book.id} />))}
+            <Book currentBook={book} key={book.id} onChangeShelf={this.props.onChangeShelf} />))}
            </ol>
         </div>
       </div>
