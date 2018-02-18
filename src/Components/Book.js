@@ -26,7 +26,7 @@ class Book extends Component {
                   value={
                     this.props.currentBook.shelf
                       ? this.props.currentBook.shelf
-                      : "none"
+                      : "noneSelected"
                   }
                   onChange={e =>
                     this.props.onChangeShelf(
@@ -41,7 +41,7 @@ class Book extends Component {
                   <option value="currentlyReading">Currently Reading</option>
                   <option value="wantToRead">Want to Read</option>
                   <option value="read">Read</option>
-                  <option value="none">None</option>
+                  <option value="noneSelected">None</option>
                 </select>
               </div>
             </div>
