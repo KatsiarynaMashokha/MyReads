@@ -19,6 +19,13 @@ class BookSearch extends Component {
   getSearchResults = query => {
     BooksAPI.search(query).then(results => {
       if (!results.error) {
+        this.props.books.forEach(book => {
+          results.map(foundBook => {
+            if (book.id === foundBook.id) {
+              foundBook.shelf = book.shelf;
+            }
+          });
+        });
         console.log(results);
         this.setState({ foundBooks: results });
       }
@@ -46,7 +53,11 @@ class BookSearch extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {this.state.foundBooks.map(book => (
-              <Book currentBook={book} key={book.id} onChangeShelf={this.props.onChangeShelf}/>
+              <Book
+                currentBook={book}
+                key={book.id}
+                onChangeShelf={this.props.onChangeShelf}
+              />
             ))}
           </ol>
         </div>

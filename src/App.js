@@ -28,6 +28,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.books)
     return (
       <div className="app">
         <Route
@@ -40,7 +41,7 @@ class App extends Component {
             />
           )}
         />
-        <Route exact path="/search" render={() => (<BookSearch  onChangeShelf={this.onChangeShelf}/>)} />
+        <Route exact path="/search" render={() => (<BookSearch books={this.state.books} onChangeShelf={this.onChangeShelf}/>)} />
         <div className="open-search">
           <Link to="/search" />
         </div>
