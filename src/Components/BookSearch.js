@@ -26,7 +26,6 @@ class BookSearch extends Component {
   };
 
   render() {
-    console.log(this.state.foundBooks);
     return (
       <div>
         <div className="search-books">
@@ -47,7 +46,7 @@ class BookSearch extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {this.state.foundBooks.map(book => (
-              <Book currentBook={book} key={book.id} />
+              <Book currentBook={book} key={book.id} onChangeShelf={this.props.onChangeShelf}/>
             ))}
           </ol>
         </div>
