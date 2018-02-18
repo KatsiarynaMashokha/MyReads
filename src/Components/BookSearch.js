@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as BooksAPI from "../BooksAPI";
 import Book from "./Book";
 import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 class BookSearch extends Component {
   state = {
@@ -12,14 +12,17 @@ class BookSearch extends Component {
 
   handleInput = query => {
     this.setState({ query });
-    let bookQuery = this.state.query;
-    console.log(bookQuery);
-    if (bookQuery) this.getSearchResults(bookQuery);
+    this.getSearchResults(query);
   };
 
   getSearchResults = query => {
+    if (!query) {
+      this.setState({ foundBooks: [] });
+      return;
+    }
+
     BooksAPI.search(query).then(results => {
-      if (!results.error) {
+      if (results && !results.error) {
         this.props.books.forEach(book => {
           results.map(foundBook => {
             if (book.id === foundBook.id) {
@@ -27,8 +30,9 @@ class BookSearch extends Component {
             }
           });
         });
-        console.log(results);
         this.setState({ foundBooks: results });
+      } else {
+        this.setState({ foundBooks: [] });
       }
     });
   };
@@ -70,6 +74,6 @@ class BookSearch extends Component {
 BookSearch.propTypes = {
   books: PropTypes.array.isRequired,
   onChangeShelf: PropTypes.func.isRequired
-}
+};
 
 export default BookSearch;
