@@ -8,18 +8,18 @@ import { DebounceInput } from "react-debounce-input";
 class BookSearch extends Component {
   state = {
     query: "",
-    foundBooks: []
+    foundBooks: [],
+    resultsLoaded: false
   };
 
   handleInput = query => {
-    this.setState({ query });
+    this.setState({ query: query, resultsLoaded: true});
     this.getSearchResults(query);
   };
 
   getSearchResults = query => {
     if (!query) {
-      this.setState({ foundBooks: [] });
-      return;
+      return this.setState({ foundBooks: [] });
     }
 
     BooksAPI.search(query).then(results => {
@@ -58,6 +58,7 @@ class BookSearch extends Component {
           </div>
         </div>
         <div className="search-books-results">
+        {(!this.state.foundBooks.length && this.state.resultsLoaded)&& <h4>No Books Found</h4>}
           <ol className="books-grid">
             {this.state.foundBooks.map(book => (
               <Book
