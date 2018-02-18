@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
+import PropTypes from 'prop-types';
 
 class Book extends Component {
   render() {
@@ -36,6 +37,11 @@ class Book extends Component {
       </div>
     );
   }
+}
+
+Book.propTypes = {
+  onChangeShelf: PropTypes.func.isRequired,
+  currentBook: PropTypes.object
 }
 
 export default Book;

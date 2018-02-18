@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import BookShelf from "./BookShelf";
+import PropTypes from 'prop-types';
 
 class ListBooks extends Component {
 
@@ -17,6 +18,11 @@ class ListBooks extends Component {
       </div>
     );
   }
+}
+
+ListBooks.propTypes = {
+  onChangeShelf: PropTypes.func.isRequired,
+  allBooks: PropTypes.array.isRequired
 }
 
 export default ListBooks;
