@@ -5,32 +5,39 @@ import PropTypes from "prop-types";
 
 class ListBooks extends Component {
   render() {
-    const { allBooks, onChangeShelf } = this.props
+    const { allBooks, onChangeShelf } = this.props;
+    const shelves = [
+      {
+        id: "currentlyReading",
+        title: "Currently Reading",
+        books: allBooks.filter(book => book.shelf === "currentlyReading")
+      },
+      {
+        id: "wantToRead",
+        title: "Want to read",
+        books: allBooks.filter(book => book.shelf === "wantToRead")
+      },
+      {
+        id: "read",
+        title: "Read",
+        books: allBooks.filter(book => book.shelf === "read")
+      }
+    ];
+
     return (
       <div className="list-books">
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-          <BookShelf
-            books={allBooks.filter(
-              book => book.shelf === "currentlyReading"
-            )}
-            shelfTitle="Currently Reading"
-            onChangeShelf={onChangeShelf}
-          />
-          <BookShelf
-            books={allBooks.filter(
-              book => book.shelf === "wantToRead"
-            )}
-            shelfTitle="Want to read"
-            onChangeShelf={onChangeShelf}
-          />
-          <BookShelf
-            books={allBooks.filter(book => book.shelf === "read")}
-            shelfTitle="Read"
-            onChangeShelf={onChangeShelf}
-          />
+          {shelves.map(shelf => (
+            <BookShelf
+              key={shelf.id}
+              shelfTitle={shelf.title}
+              books={shelf.books}
+              onChangeShelf={onChangeShelf}
+            />
+          ))}
         </div>
       </div>
     );
