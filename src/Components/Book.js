@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 class Book extends Component {
   render() {
+    const { currentBook } = this.props
     return (
       <div>
         <div className="book">
@@ -14,9 +15,9 @@ class Book extends Component {
                 width: 128,
                 height: 193,
                 backgroundImage: `url(${
-                  this.props.currentBook.imageLinks &&
-                  this.props.currentBook.imageLinks.thumbnail
-                    ? `${this.props.currentBook.imageLinks.thumbnail}`
+                  currentBook.imageLinks &&
+                  currentBook.imageLinks.thumbnail
+                    ? `${currentBook.imageLinks.thumbnail}`
                     : `https://placeholdit.co//i/128x193?`
                 })`
               }}
@@ -24,13 +25,13 @@ class Book extends Component {
               <div className="book-shelf-changer">
                 <select
                   value={
-                    this.props.currentBook.shelf
-                      ? this.props.currentBook.shelf
+                    currentBook.shelf
+                      ? currentBook.shelf
                       : "noneSelected"
                   }
                   onChange={e =>
                     this.props.onChangeShelf(
-                      this.props.currentBook,
+                      currentBook,
                       e.target.value
                     )
                   }
@@ -46,8 +47,8 @@ class Book extends Component {
               </div>
             </div>
           </div>
-          <div className="book-title">{this.props.currentBook.title}</div>
-          <div className="book-authors">{Array.isArray(this.props.currentBook.authors) ? this.props.currentBook.authors.join(', ') : ''}</div>
+          <div className="book-title">{currentBook.title}</div>
+          <div className="book-authors">{Array.isArray(currentBook.authors) ? currentBook.authors.join(', ') : ''}</div>
         </div>
       </div>
     );

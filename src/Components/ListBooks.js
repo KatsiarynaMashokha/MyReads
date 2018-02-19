@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 class ListBooks extends Component {
   render() {
+    const { allBooks, onChangeShelf } = this.props
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -12,23 +13,23 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <BookShelf
-            books={this.props.allBooks.filter(
+            books={allBooks.filter(
               book => book.shelf === "currentlyReading"
             )}
             shelfTitle="Currently Reading"
-            onChangeShelf={this.props.onChangeShelf}
+            onChangeShelf={onChangeShelf}
           />
           <BookShelf
-            books={this.props.allBooks.filter(
+            books={allBooks.filter(
               book => book.shelf === "wantToRead"
             )}
             shelfTitle="Want to read"
-            onChangeShelf={this.props.onChangeShelf}
+            onChangeShelf={onChangeShelf}
           />
           <BookShelf
-            books={this.props.allBooks.filter(book => book.shelf === "read")}
+            books={allBooks.filter(book => book.shelf === "read")}
             shelfTitle="Read"
-            onChangeShelf={this.props.onChangeShelf}
+            onChangeShelf={onChangeShelf}
           />
         </div>
       </div>
