@@ -9,6 +9,8 @@ The goal of the app is to organize a personal book library. There are 3 shelves 
 
 The app also provides the functionality to move the books between those shelves and also execute search for new books and be able to add them to the shelves as well.
 
+You can see the app here: https://katsiarynamashokha.github.io/MyReads/#/
+
 ## Setup/Installation Requirements
 Download or clone the following project from the Github by tapping "Download" or using `git clone` from the terminal. Then run `npm install` and `npm start`.
 
